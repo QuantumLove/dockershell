@@ -1,4 +1,4 @@
-Very work in progress, but saves you a looot of hassle
+Very "work in progress", but saves you a looot of hassle if you are on Windows / and don't want to manually install stuff and/or rely on ported binaries.
 
 Not at all tested but we do it as we go!
 

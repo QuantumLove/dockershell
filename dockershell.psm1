@@ -14,12 +14,18 @@ function RunService {
     docker-compose.exe -f .\docker-compose.yaml run --rm $serviceName $args[0]
 }
 
-#function asess { RunService "asess" $args }
-#function helm { RunService "helm" $args }
-#function stern { RunService "stern" $args }
-#function kubectl { RunService "kubectl" $args }
-#function kubens { RunService "kubens" $args }
-#function kubectx { RunService "kubectx" $args }
+function asess { RunService "asess" $args }
+Export-ModuleMember -Function 'asess'
+function helm { RunService "helm" $args }
+Export-ModuleMember -Function 'helm'
+function stern { RunService "stern" $args }
+Export-ModuleMember -Function 'stern'
+function kubectl { RunService "kubectl" $args }
+Export-ModuleMember -Function 'kubectl'
+function kubens { RunService "kubens" $args }
+Export-ModuleMember -Function 'kubens'
+function kubectx { RunService "kubectx" $args }
+Export-ModuleMember -Function 'kubectx'
 
 # These work, copy to your powershell and run them, then execute the commands 
 # TODO: Implement dwd so you don't need to be in this directory for that
