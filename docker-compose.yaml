@@ -20,18 +20,30 @@ services:
             - ~/.helm:/root/.helm
             - ${FILES_ROOT:-.}:/apps
         command: --help
-    kubectl:
-        image: bitnami/kubectl:1.17-debian-9
-        command: --help
     stern:
-        # TODO Understand which volumes are needed so stern persists data
-        container_name: stern
         image: stern
         build: 
             context: ./stern
-        entrypoint: stern
-        command: help
-    # Kubens
-    # Kubectx
+        volumes:
+            - ~/.kube:/stern/.kube
+            - ~/.helm:/stern/.helm
+            - ${FILES_ROOT:-.}:/apps
+        entrypoint: /stern/stern
+    kubectl:
+        image: bitnami/kubectl:1.17-debian-9
+        entrypoint: kubectl
+        command: --help
+    kubens:
+        container_name: kubens
+        image: kubensctx
+        build:
+            context: ./kubensctx
+        entrypoint: kubens
+    kubectx:
+        container_name: kubectx
+        image: kubensctx
+        build:
+            context: ./kubensctx
+        entrypoint: kubectx
 
 # TODO: Finish script that turns the services into commands in the terminal
