@@ -1,0 +1,37 @@
+version: "3.7"
+services:
+    # AWS CLI
+    asess:
+        # TODO change bash command promp to something fancier (currently "bash-5.0.0$")
+        container_name: aws-mfa
+        image: awscli:1
+        build: 
+            context: ./awscli
+        entrypoint: bash /home/aws/scripts/asess.sh
+        volumes:
+            - ${AWS_CONFIG_FOLDER:-~/.aws}:/home/aws/.aws
+            - ./scripts:/home/aws/scripts # TODO Convert this into a script loaded in the image and not dynamically
+            - ${FILES_ROOT:-.}:/home/files
+        command: help
+    helm:
+        image: alpine/helm:3.0.2
+        volumes:
+            - ~/.kube:/root/.kube
+            - ~/.helm:/root/.helm
+            - ${FILES_ROOT:-.}:/apps
+        command: --help
+    kubectl:
+        image: bitnami/kubectl:1.17-debian-9
+        command: --help
+    stern:
+        # TODO Understand which volumes are needed so stern persists data
+        container_name: stern
+        image: stern
+        build: 
+            context: ./stern
+        entrypoint: stern
+        command: help
+    # Kubens
+    # Kubectx
+
+# TODO: Finish script that turns the services into commands in the terminal
