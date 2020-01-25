@@ -4,6 +4,7 @@ promptValue() {
     echo $val
 }
 
+## TODO put these functions into bash rc and change the name of this script yo entripoint
 asess() {
     local TOKEN_DURATION=${1:-900}
 
@@ -34,5 +35,5 @@ asess() {
 
 cd /home/files
 asess
-aws ${@}
+# aws ${@}
 bash

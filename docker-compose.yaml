@@ -4,7 +4,7 @@ services:
     asess:
         # TODO change bash command promp to something fancier (currently "bash-5.0.0$")
         container_name: aws-mfa
-        image: awscli:1
+        image: awscli
         build: 
             context: ./awscli
         entrypoint: bash /home/aws/scripts/asess.sh
