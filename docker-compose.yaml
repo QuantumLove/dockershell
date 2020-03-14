@@ -10,8 +10,8 @@ services:
         entrypoint: bash /home/aws/scripts/asess.sh
         volumes:
             - ${AWS_CONFIG_FOLDER:-~/.aws}:/home/aws/.aws
-            - ./awscli:/home/aws/scripts # TODO Convert this into a script loaded in the image and not dynamically
-            - ${FILES_ROOT:-.}:/home/files
+            - ./awscli:/home/aws/scripts # TODO Convert this into a script in the image, and not in this folder
+            - ${CWD}:/home/files
         command: help
     helm:
         image: alpine/helm:3.0.2
